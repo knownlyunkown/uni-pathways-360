@@ -53,9 +53,7 @@ const ApplicationCard: React.FC<ApplicationCardProps> = ({
             <p className="body text-muted-foreground truncate">{course}</p>
             <p className="small text-muted-foreground">Application #{id}</p>
           </div>
-          <StatusBadge status={status}>
-            {status.replace('-', ' ').toUpperCase()}
-          </StatusBadge>
+          <StatusBadge status={status} />
         </div>
       </CardHeader>
       

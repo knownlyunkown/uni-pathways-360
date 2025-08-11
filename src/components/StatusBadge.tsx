@@ -3,11 +3,18 @@ import { cn } from '@/lib/utils';
 
 interface StatusBadgeProps {
   status: 'pending' | 'in-review' | 'approved' | 'rejected' | 'action-required';
-  children: React.ReactNode;
   className?: string;
 }
 
-const StatusBadge: React.FC<StatusBadgeProps> = ({ status, children, className }) => {
+const statusLabels = {
+  pending: 'Pending',
+  'in-review': 'In Review',
+  approved: 'Approved',
+  rejected: 'Rejected',
+  'action-required': 'Action Required',
+};
+
+const StatusBadge: React.FC<StatusBadgeProps> = ({ status, className }) => {
   return (
     <span
       className={cn(
@@ -16,7 +23,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, children, className }
         className
       )}
     >
-      {children}
+      {statusLabels[status]}
     </span>
   );
 };
