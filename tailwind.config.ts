@@ -52,6 +52,36 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Brand Colors
+				gunmetal: {
+					50: 'hsl(var(--gunmetal-50))',
+					100: 'hsl(var(--gunmetal-100))',
+					200: 'hsl(var(--gunmetal-200))',
+					DEFAULT: 'hsl(var(--gunmetal))'
+				},
+				'columbia-blue': {
+					50: 'hsl(var(--columbia-blue-50))',
+					100: 'hsl(var(--columbia-blue-100))',
+					200: 'hsl(var(--columbia-blue-200))',
+					DEFAULT: 'hsl(var(--columbia-blue))'
+				},
+				'tigers-eye': {
+					50: 'hsl(var(--tigers-eye-50))',
+					100: 'hsl(var(--tigers-eye-100))',
+					200: 'hsl(var(--tigers-eye-200))',
+					DEFAULT: 'hsl(var(--tigers-eye))'
+				},
+				// Status Colors
+				'status-pending': 'hsl(var(--status-pending))',
+				'status-pending-foreground': 'hsl(var(--status-pending-foreground))',
+				'status-in-review': 'hsl(var(--status-in-review))',
+				'status-in-review-foreground': 'hsl(var(--status-in-review-foreground))',
+				'status-approved': 'hsl(var(--status-approved))',
+				'status-approved-foreground': 'hsl(var(--status-approved-foreground))',
+				'status-rejected': 'hsl(var(--status-rejected))',
+				'status-rejected-foreground': 'hsl(var(--status-rejected-foreground))',
+				'status-action-required': 'hsl(var(--status-action-required))',
+				'status-action-required-foreground': 'hsl(var(--status-action-required-foreground))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

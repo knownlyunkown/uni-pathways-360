@@ -2,41 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* UNI 360° Design System - Modern Glassmorphism */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Brand Colors */
+    --gunmetal-50: 223 25% 95%;
+    --gunmetal-100: 223 25% 85%;
+    --gunmetal-200: 223 25% 75%;
+    --gunmetal: 223 25% 20%;
+    
+    --columbia-blue-50: 190 100% 95%;
+    --columbia-blue-100: 190 100% 85%;
+    --columbia-blue-200: 190 100% 75%;
+    --columbia-blue: 190 100% 65%;
+    
+    --tigers-eye-50: 35 100% 95%;
+    --tigers-eye-100: 35 100% 85%;
+    --tigers-eye-200: 35 100% 75%;
+    --tigers-eye: 35 100% 45%;
+
+    /* Design System Tokens */
+    --background: 223 25% 98%;
+    --foreground: 223 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 223 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 223 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: var(--gunmetal);
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--gunmetal-50);
+    --secondary-foreground: var(--gunmetal);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: var(--gunmetal-50);
+    --muted-foreground: 223 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: var(--columbia-blue);
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 223 15% 90%;
+    --input: 223 15% 95%;
+    --ring: var(--columbia-blue);
 
-    --radius: 0.5rem;
+    /* Status Colors */
+    --status-pending: var(--tigers-eye);
+    --status-pending-foreground: var(--gunmetal);
+    --status-in-review: var(--columbia-blue);
+    --status-in-review-foreground: 0 0% 98%;
+    --status-approved: 142 76% 36%;
+    --status-approved-foreground: 0 0% 98%;
+    --status-rejected: 0 65% 55%;
+    --status-rejected-foreground: 0 0% 98%;
+    --status-action-required: 0 65% 55%;
+    --status-action-required-foreground: 0 0% 98%;
+
+    /* Glassmorphism */
+    --glass-background: 0 0% 100% / 0.1;
+    --glass-border: 0 0% 100% / 0.2;
+    --glass-blur: blur(10px);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--gunmetal)) 0%, hsl(var(--columbia-blue)) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(var(--gunmetal)) 0%, hsl(223 25% 30%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(var(--glass-background)) 0%, hsl(0 0% 100% / 0.05) 100%);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +137,66 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(223 25% 96%) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Glass morphism utilities */
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  }
+  
+  .glass-nav {
+    @apply backdrop-blur-xl bg-white/20 border-b border-white/20;
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.1);
+  }
+
+  .status-badge {
+    @apply px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm;
+  }
+  
+  .status-pending {
+    @apply bg-status-pending text-status-pending-foreground;
+  }
+  
+  .status-in-review {
+    @apply bg-status-in-review text-status-in-review-foreground;
+  }
+  
+  .status-approved {
+    @apply bg-status-approved text-status-approved-foreground;
+  }
+  
+  .status-rejected {
+    @apply bg-status-rejected text-status-rejected-foreground;
+  }
+  
+  .status-action-required {
+    @apply bg-status-action-required text-status-action-required-foreground;
+  }
+
+  /* Typography Scale */
+  .heading-1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+  
+  .heading-2 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  
+  .heading-3 {
+    @apply text-2xl font-semibold;
+  }
+  
+  .body {
+    @apply text-base;
+  }
+  
+  .small {
+    @apply text-sm text-muted-foreground;
   }
 }
