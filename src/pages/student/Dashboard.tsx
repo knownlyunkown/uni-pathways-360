@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import CountryToggle from '@/components/CountryToggle';
 import DashboardCard from '@/components/DashboardCard';
 import ApplicationCard from '@/components/ApplicationCard';
 import QuickActions from '@/components/QuickActions';
 import NotificationsFeed from '@/components/NotificationsFeed';
+import StudentSidebar from '@/components/StudentSidebar';
 import { 
   FileText, 
   Clock, 
@@ -100,44 +102,52 @@ const StudentDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-gunmetal-50/20">
-      {/* Header */}
-      <header className="glass-nav border-b border-white/20 sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <GraduationCap className="h-8 w-8 text-accent" />
-                <div>
-                  <h1 className="heading-2 text-foreground">UNI 360°</h1>
-                  <p className="small text-muted-foreground">Student Portal</p>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-gradient-to-br from-background to-gunmetal-50/20">
+        <StudentSidebar />
+        
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="glass-nav border-b border-white/20 sticky top-0 z-50">
+            <div className="flex items-center justify-between px-6 py-4">
+              <div className="flex items-center gap-4">
+                <SidebarTrigger className="mr-2" />
+                <div className="flex items-center gap-2">
+                  <GraduationCap className="h-8 w-8 text-accent" />
+                  <div>
+                    <h1 className="heading-2 text-foreground">Student Dashboard</h1>
+                    <p className="small text-muted-foreground">Manage your applications</p>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <CountryToggle 
+                  selectedCountry={selectedCountry}
+                  onCountryChange={setSelectedCountry}
+                />
+                <div className="flex items-center gap-2">
+                  <Link to="/admin">
+                    <Button variant="outline" size="sm">
+                      Admin Portal
+                    </Button>
+                  </Link>
+                  <Link to="/master-admin">
+                    <Button variant="outline" size="sm">
+                      Master Admin
+                    </Button>
+                  </Link>
+                  <Button variant="ghost" size="sm">
+                    <Settings className="h-4 w-4" />
+                  </Button>
+                  <Button variant="ghost" size="sm">
+                    <LogOut className="h-4 w-4" />
+                  </Button>
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <CountryToggle 
-                selectedCountry={selectedCountry}
-                onCountryChange={setSelectedCountry}
-              />
-              <div className="flex items-center gap-2">
-                <Link to="/admin">
-                  <Button variant="outline" size="sm">
-                    Admin Portal
-                  </Button>
-                </Link>
-                <Button variant="ghost" size="sm">
-                  <Settings className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <LogOut className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+          </header>
 
-      <main className="container mx-auto px-6 py-8">
+          <main className="flex-1 p-6">
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="heading-2 text-foreground mb-2">
@@ -258,10 +268,12 @@ const StudentDashboard: React.FC = () => {
               }}
               onMarkAllRead={() => console.log('Mark all notifications as read')}
             />
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
+    </SidebarProvider>
   );
 };
 

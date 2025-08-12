@@ -5,7 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Progress } from '@/components/ui/progress';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import DashboardCard from '@/components/DashboardCard';
+import MasterAdminSidebar from '@/components/MasterAdminSidebar';
 import { 
   Crown,
   Users,
@@ -76,10 +78,15 @@ const MasterAdminDashboard: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-gunmetal-50/20">
-      {/* Header */}
-      <header className="glass-nav border-b border-white/20 sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-gradient-to-br from-background to-gunmetal-50/20">
+        <MasterAdminSidebar />
+        
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="glass-nav border-b border-white/20 sticky top-0 z-50">
+            <div className="flex items-center justify-between px-6 py-4">
+              <SidebarTrigger className="mr-2" />
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
@@ -111,10 +118,10 @@ const MasterAdminDashboard: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-      </header>
+            </div>
+          </header>
 
-      <main className="container mx-auto px-6 py-8">
+          <main className="flex-1 p-6">
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="heading-2 text-foreground mb-2">
@@ -339,9 +346,11 @@ const MasterAdminDashboard: React.FC = () => {
               </CardContent>
             </Card>
           </div>
-        )}
-      </main>
-    </div>
+          )}
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
   );
 };
 
